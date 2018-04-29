@@ -1,4 +1,5 @@
 *.a
+mine
 *.o
 a.out
 *.zip
