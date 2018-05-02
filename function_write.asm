@@ -7,6 +7,7 @@ function_write:
 
 		push eax
 		push ebx
+		push ecx
 		push edx
 
 		mov ebx, 10
@@ -42,8 +43,9 @@ function_write:
 .exit:	add esp, 4
 		
 		pop edi
-		
+
 		pop edx
+		pop ecx
 		pop ebx
 		pop eax
 
