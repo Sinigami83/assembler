@@ -1,3 +1,4 @@
+%include	"stud_io.inc"
 global	_start
 extern	function_read
 extern	function_write

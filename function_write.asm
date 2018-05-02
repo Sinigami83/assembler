@@ -1,6 +1,9 @@
 %include "stud_io.inc"
 global	function_write
 
+section	.bss
+str1	resb 512
+
 section	.text
 function_write:
 		push ebp
@@ -16,6 +19,7 @@ function_write:
 		push edi
 		sub esp, 2
 		mov edi, esp
+		PUSH word 0
 
 .again:	test eax, eax
 		jz .print
@@ -25,20 +29,22 @@ function_write:
 		push edx
 		jmp short .again
 
-.print:	pop eax
+.print:	xor eax, eax
+		pop eax
 		test eax, eax
 		jz .exit
-		
-		mov [edi], eax
+
+		mov [edi], al
+
 		mov eax, 4
 		mov ebx, 1
 		mov ecx, edi
 		mov edx, 1
 		int 0x80
-		;PRINT '!'
 		jmp short .print
 
-.exit:	add esp, 2
+.exit:	add esp, 4
+		
 		pop edi
 		
 		pop edx

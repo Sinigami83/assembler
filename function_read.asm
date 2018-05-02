@@ -13,7 +13,7 @@ function_read:
 		push edi
 
 		xor esi, esi	
-		sub esp, 2
+		sub esp, 4
 		mov esi, esp
 
 .enter:	mov eax, 3		; read
@@ -22,24 +22,16 @@ function_read:
 		mov edx, 1
 		int 0x80
 
-		cmp eax, 1
-		jne .not_a_digit
 		xor eax, eax
-		mov eax, [ecx]
+		mov al, [ecx]
 
-		cmp al, '0'
-		jl .not_a_digit
-		cmp al, '9'
-		jg .not_a_digit
+		cmp eax, '0'
+		jl .exit
+		cmp eax, '9'
+		jg .exit
 
-		jmp .cont
-
-.not_a_digit:	
-		xor eax, eax
-		not eax
-		jle .exit		; if eof goto ende
-
-.cont:	mov ebx, 10
+.cont:	
+		mov ebx, 10
 		sub eax, '0'
 		mov ecx, eax   	; getchar(cl)
 		mov eax, edi
@@ -47,10 +39,12 @@ function_read:
 		mul ebx
 		add eax, ecx
 		mov edi, eax 	; now: result = result * 10 + (cl - '0')
+
 		jmp .enter		; goto again
 
 .exit:	mov eax, edi
-		add esp, 2
+
+		add esp, 4
 		pop edi
 		pop esi
 		pop edx
