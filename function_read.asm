@@ -1,4 +1,3 @@
-%include "stud_io.inc"
 global	function_read
 
 section	.text
