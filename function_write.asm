@@ -1,8 +1,5 @@
 global	function_write
 
-section	.bss
-str1	resb 512
-
 section	.text
 function_write:
 		push ebp
