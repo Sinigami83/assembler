@@ -38,6 +38,7 @@ function_or:
 		mov ebp, esp
 
 		push ebx
+		push ecx
 		push edx
 
 		mov ebx, [ebp + 8]
@@ -49,6 +50,7 @@ function_or:
 		add esp, 4
 		
 		pop edx
+		pop ecx
 		pop ebx
 
 		mov esp, ebp

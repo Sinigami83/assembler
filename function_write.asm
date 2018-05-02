@@ -43,11 +43,12 @@ function_write:
 .exit:	add esp, 4
 		
 		pop edi
-
+		
 		pop edx
 		pop ecx
 		pop ebx
 		pop eax
+
 
 		mov esp, ebp
 		pop ebp
