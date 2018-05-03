@@ -28,11 +28,12 @@ function_rec:
 		jz .rec_z
 	
 		push eax
-		sub	eax, 1
+		dec eax
 		push eax
 		call function_rec
 		add esp, 4
 		pop ebx
+		xor edx, edx
 		mul ebx 
 		jmp .exit
 
