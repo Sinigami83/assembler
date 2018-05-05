@@ -12,7 +12,8 @@ section	.text
 file1	db '/home/nodir/nasm_file/file/filepath1.txt', 0
 file2	db '/home/nodir/nasm_file/file/filepath2.txt', 0
 
-_start:	;open first file
+_start:	
+		;open first file
 		mov eax, 5
 		mov ebx, file1
 		mov ecx, 0		; open only for read
@@ -26,7 +27,7 @@ _start:	;open first file
 		;open second file
 		mov eax, 5
 		mov ebx, file2
-		mov ecx, 241h	; open created how clean	
+		mov ecx, 241h	; created how clean	
 		mov edx, 0666q
 		int 0x80
 				
@@ -60,6 +61,7 @@ close_files:
 		mov eax, 6
 		mov ebx, esi
 
-quit:	mov eax, 1
+quit:	
+		mov eax, 1
 		mov ebx, 0
 		int 0x80
