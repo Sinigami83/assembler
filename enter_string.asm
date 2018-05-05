@@ -4,14 +4,15 @@ global 	_start
 section	.text
 str_y	db 'Yes', 0
 str_n	db 'No', 0
-arr1	db 'This is long string!', 0
+arr1	db 'This is long string!'
 arr_ln	equ $-arr1
 
 arr2	db 'a'
 next_st	db 10, 0
 
 section	.text
-_start:	mov edi, arr1
+_start:	
+		mov edi, arr1
 		mov ecx, arr_ln
 		mov al, 'a'
 		cld
@@ -24,12 +25,14 @@ _start:	mov edi, arr1
 		add esp, 4
 		jmp quit
 
-writ_n: push dword str_n
+writ_n:	
+		push dword str_n
 		call function_write
 		add esp, 4
 		jmp quit
 
-quit:	push dword next_st
+quit:	
+		push dword next_st
 		call function_write
 		add esp, 4
 		
@@ -44,12 +47,14 @@ function_str_len:
 		xor eax, eax
 		mov ecx, [ebp + 8]
 		
-.again:	cmp byte [ecx + eax], 0
+.again:	
+		cmp byte [ecx + eax], 0
 		jz .quit
 		inc eax
 		jmp .again
 
-.quit:	mov esp, ebp	
+.quit:	
+		mov esp, ebp	
 		pop ebp
 		ret
 
